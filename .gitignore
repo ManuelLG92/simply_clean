@@ -1,0 +1,43 @@
+###> symfony/framework-bundle ###
+app/.env.local
+app/.env.local.php
+app/.env.*.local
+app/public/bundles/
+app/public/uploads/
+app/public/temp/*
+!app/public/temp/.gitkeep
+app/var/
+app/vendor/
+###< symfony/framework-bundle ###
+
+###> docker data ###
+docker/data/
+###> docker data ###
+
+###> friendsofphp/php-cs-fixer ###
+app/.php_cs
+app/.php_cs.cache
+###< friendsofphp/php-cs-fixer ###
+
+
+
+###> Other files ###
+.idea
+app/.idea
+.DS_Store
+app/config/jwt
+app/config/jwt/*
+.php_cs.cache
+app/bin/.phpunit
+app/public/avatars
+app/public/images
+app/.php_cs.dist
+docker/macos/*
+docker/macos/.docker-sync
+docker/macos/init-macos.sh
+app/.composer-cache
+app/.composer-cache/*
+app/*/.php-cs-fixer.cache
+app/collections
+app/.phpunit.result.cache
+###< Other files ###

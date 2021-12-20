@@ -1,0 +1,7 @@
+App\News\Domain\ValueObjects\NewContent:
+  type: embeddable
+  fields:
+    value:
+      type: string
+      length: 255
+      column: content

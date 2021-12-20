@@ -1,0 +1,69 @@
+version: '3.5'
+
+services:
+  webserver:
+    container_name: clean_architecture-webserver
+    build:
+      context: nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ../app/public:/var/www/html/laliga-back/public
+    depends_on:
+      - php-fpm
+    networks:
+     clean_architecture_template_network:
+        aliases:
+          - webserver.local
+
+  php-fpm:
+    container_name: clean_architecture-php
+    build:
+      context: php
+      args:
+        USER_ID: 1000
+        GROUP_ID: 1000
+    restart: always
+    volumes:
+      - ../app:/var/www/html/laliga-back
+    depends_on:
+      - mysql
+    networks:
+     clean_architecture_template_network:
+
+  mysql:
+    container_name: clean_architecture-mysql
+    image: mysql:8.0.23
+    ports:
+      - "7881:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=api_bbdd
+      - MYSQL_USER=symfony
+      - MYSQL_PASSWORD=symfony
+    volumes:
+      - "./data/db/mysql:/var/lib/mysql"
+    networks:
+     clean_architecture_template_network:
+          aliases:
+            - mysql.local
+  redis:
+    image: redis:alpine
+    container_name: clean_architecture-redis
+    networks:
+     clean_architecture_template_network:
+        aliases:
+          - redis.local
+
+  rabbitmq:
+    image: rabbitmq:3.9-management
+    container_name: clean_architecture-rabbit_mq
+    ports:
+      - '5672:5672'
+      - '15669:15672'
+    networks:
+      clean_architecture_template_network:
+
+networks:
+  clean_architecture_template_network:
+    external: true

@@ -1,0 +1,6 @@
+App\News\Domain\ValueObjects\NewCreatedAt:
+  type: embeddable
+  fields:
+    value:
+      type: datetime
+      column: created_at

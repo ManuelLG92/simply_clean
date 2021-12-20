@@ -1,0 +1,9 @@
+app_news_create:
+  path: /news
+  methods: [POST, OPTIONS]
+  controller: App\News\Infrastructure\Controller\CreateNewsController
+
+app_get:
+  path: /news/{id}
+  methods: [GET, OPTIONS]
+  controller: App\News\Infrastructure\Controller\GetNewsController

@@ -1,0 +1,19 @@
+App\News\Domain\News:
+  type: entity
+  table: news
+  embedded:
+    id:
+      class: App\News\Domain\ValueObjects\NewId
+      columnPrefix: false
+    title:
+      class: App\News\Domain\ValueObjects\NewTitle
+      columnPrefix: false
+    content:
+      class: App\News\Domain\ValueObjects\NewContent
+      columnPrefix: false
+    createdAt:
+      class: App\News\Domain\ValueObjects\NewCreatedAt
+      columnPrefix: false
+    updatedAt:
+      class: App\News\Domain\ValueObjects\NewUpdatedAt
+      columnPrefix: false

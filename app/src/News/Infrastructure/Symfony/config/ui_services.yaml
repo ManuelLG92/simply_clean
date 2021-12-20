@@ -1,0 +1,7 @@
+services:
+    app.news.infraestructure.controller.create_news_controller:
+        class: App\News\Infrastructure\Controller\CreateNewsController
+        parent: App\Shared\UI\HTTP\Rest\Controller\ApiRestController
+        arguments:
+        tags: [ 'controller.service_arguments' ]
+
