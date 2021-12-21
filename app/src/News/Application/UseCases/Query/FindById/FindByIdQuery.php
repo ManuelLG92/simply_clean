@@ -1,11 +1,10 @@
 <?php
 
-namespace App\News\Application\UseCases\GetNews;
+namespace App\News\Application\UseCases\Query\FindById;
 
-class GetNewQuery
+class FindByIdQuery
 {
     public function __construct(public readonly string $id)
     {
     }
-
 }

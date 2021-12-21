@@ -1,14 +1,13 @@
 <?php
 
-namespace App\News\Application\UseCases\Create;
+namespace App\News\Application\UseCases\Command\Create;
 
-class CreateNewsCommand
+class CreateCommand
 {
     public function __construct(
         public readonly string $title,
         public readonly string $content)
     {
-
     }
 
 }

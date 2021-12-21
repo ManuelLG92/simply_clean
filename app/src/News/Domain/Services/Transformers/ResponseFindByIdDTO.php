@@ -2,15 +2,23 @@
 
 namespace App\News\Domain\Services\Transformers;
 
-use App\News\Domain\DTO\GetNewDTO;
 use App\News\Domain\News;
 use App\Shared\Domain\ValueObjects\StringValueObject;
 
-class GetNewTransformerToDTO
+class ResponseFindByIdDTO
 {
-    public static function fromNewEntity(News $news): GetNewDTO
+    public function __construct(
+        public readonly string $id,
+        public readonly string $title,
+        public readonly string $content,
+        public readonly string $createdAt,
+        public readonly string $updatedAt,
+    )
     {
-        return new GetNewDTO(
+    }
+    public static function fromNewEntity(News $news): ResponseFindByIdDTO
+    {
+        return new self(
             $news->id->value(),
             $news->title->value(),
             $news->content->value(),

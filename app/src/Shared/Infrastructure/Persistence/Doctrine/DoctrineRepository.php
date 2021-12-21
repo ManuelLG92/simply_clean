@@ -7,6 +7,7 @@ use App\Shared\Domain\Criteria\Criteria;
 use App\Shared\Domain\RepositoryInterface;
 use App\Shared\Domain\ValueObjects\Identifier;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -41,5 +42,14 @@ abstract class DoctrineRepository extends ServiceEntityRepository implements Rep
     public function remove(AggregateRoot $aggregateRoot): void
     {
         $this->getEntityManager()->remove($aggregateRoot);
+    }
+
+    /**
+     * @throws OptimisticLockException
+     * @throws ORMException
+     */
+    public function flush()
+    {
+        $this->getEntityManager()->flush();
     }
 }

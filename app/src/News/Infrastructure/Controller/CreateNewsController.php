@@ -2,6 +2,8 @@
 
 namespace App\News\Infrastructure\Controller;
 
+use App\News\Application\UseCases\Command\Create\CreateCommand;
+use App\News\Application\UseCases\Command\Create\CreateHandler;
 use App\News\Application\UseCases\Create\CreateNewsCommand;
 use App\News\Application\UseCases\Create\CreateNewsHandler;
 use App\News\Utils\NewsConstants;
@@ -22,26 +24,26 @@ class CreateNewsController extends ApiRestController
      * @throws InvalidAttributeException
      */
     public function __invoke(
-        CreateNewsHandler $createNewsHandler,
+        CreateHandler $createNewsHandler,
         Request $request,
-        EntityManagerInterface $entityManager,
+        //EntityManagerInterface $entityManager,
     ): JsonResponse
     {
 
+        /* Validation and normalize params */
         ArrayValidator::associativeHasNotEmptyFields($request->request->all());
 
         $params = NormalizeNewsBody::get($request);
+        /* Validation  */
 
-        $command = new CreateNewsCommand(
+        $command = new CreateCommand(
             $params[NewsConstants::TITLE->value],
             $params[NewsConstants::CONTENT->value]
         );
 
-        $news = $createNewsHandler->__invoke($command);
+        $createNewsHandler->__invoke($command);
 
-        $entityManager->flush();
-
-        return new JsonResponse( ['data' => $news], 201);
+        return new JsonResponse( [], 201);
 
     }
 }

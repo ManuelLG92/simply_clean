@@ -13,6 +13,7 @@ use App\Shared\Domain\ValueObjects\StringValueObject;
 use App\Shared\Infrastructure\Persistence\Doctrine\DoctrineRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
+// todo review not compatible flush
 final class MySqlNewRepository extends DoctrineRepository implements NewRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
