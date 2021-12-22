@@ -7,3 +7,8 @@ app_get:
   path: /news/{id}
   methods: [GET, OPTIONS]
   controller: App\News\Infrastructure\Controller\GetNewsController
+
+home:
+  path: /
+  methods: [GET, OPTIONS]
+  controller: App\News\Infrastructure\Controller\Home
