@@ -1,0 +1,8 @@
+POST http://127.0.0.1:8080/api/v1/news
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title": "Title 2",
+  "content": "content 2"
+}

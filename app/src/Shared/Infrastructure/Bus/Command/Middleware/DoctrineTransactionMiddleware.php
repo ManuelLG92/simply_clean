@@ -6,6 +6,7 @@ namespace App\Shared\Infrastructure\Bus\Command\Middleware;
 
 use App\Shared\Domain\Bus\Command\CommandInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Throwable;
 
 final class DoctrineTransactionMiddleware extends MiddlewareHandler
 {
@@ -13,6 +14,9 @@ final class DoctrineTransactionMiddleware extends MiddlewareHandler
     {
     }
 
+    /**
+     * @throws Throwable
+     */
     public function handle(CommandInterface $command): void
     {
         if ($this->entityManager->getConnection()->isTransactionActive()) {
@@ -27,7 +31,7 @@ final class DoctrineTransactionMiddleware extends MiddlewareHandler
             $this->entityManager->flush();
             $this->entityManager->commit();
             $this->entityManager->clear();
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             $this->entityManager->close();
             $this->entityManager->rollback();
             throw $e;

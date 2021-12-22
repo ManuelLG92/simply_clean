@@ -48,7 +48,7 @@ abstract class DoctrineRepository extends ServiceEntityRepository implements Rep
      * @throws OptimisticLockException
      * @throws ORMException
      */
-    public function flush()
+    public function flush(): void
     {
         $this->getEntityManager()->flush();
     }

@@ -5,6 +5,7 @@ namespace App\Shared\UI\Command\Event;
 
 
 use App\Shared\Infrastructure\Bus\Event\Consumer\DatabaseEventConsumer;
+use Doctrine\DBAL\Driver\Exception;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -25,6 +26,10 @@ final class ConsumeDatabaseEventCommand extends Command
             ->addArgument('quantity', InputArgument::REQUIRED, 'Quantity of events to consume');
     }
 
+    /**
+     * @throws Exception
+     * @throws \Doctrine\DBAL\Exception
+     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $quantity = (int) $input->getArgument('quantity');

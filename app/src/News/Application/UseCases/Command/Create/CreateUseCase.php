@@ -21,8 +21,9 @@ class CreateUseCase
     {
         $news = News::create($title,$content);
         $this->newRepository->add($news);
-        // todo
         $this->newRepository->flush();
+
+        //return something or ACK
         return true;
     }
 }

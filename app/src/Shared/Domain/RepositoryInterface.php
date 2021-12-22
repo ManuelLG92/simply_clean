@@ -14,4 +14,6 @@ interface RepositoryInterface
     public function findByCriteria(Criteria $criteria): array;
 
     public function remove(AggregateRoot $user): void;
+
+    public function flush(): void;
 }
